@@ -1,0 +1,39 @@
+.card-container {
+    transition-property: box-shadow;
+    transition-duration: .25s;
+    transition-timing-function: ease-in;
+    transition-delay: 0s;
+    
+    &:hover {
+        transition-timing-function: ease-out;
+        box-shadow: 5px 5px 12px 3px rgba(0, 0,0, 0.25);
+    }
+    .card {
+        overflow: hidden;
+        padding-bottom: 20px;
+        border-bottom: solid 1px #ececec;
+        
+        &.large {
+            padding: 20px;
+            img {
+                float: left;
+            }
+            figcaption {
+                max-width: 600px;
+                margin-left: 150px;
+                h3 {
+                    margin-top: 0;
+                }
+                .danger {
+                    color: #d9534f;
+                }
+                .warning {
+                    color: #f0ad4e;
+                }
+                .success {
+                    color: #5cb85c;
+                }
+            }
+        }
+    }
+}

@@ -13,7 +13,7 @@ describe('Filter: jljHumanTime', function () {
 
   it('should return the input prefixed with "jljHumanTime filter:"', function () {
     var text = '130';
-    expect(jljHumanTime(text, mm)).toBe('2hr 10mins');
+    expect(jljHumanTime(text, 'mm', 'hhh mmm', false)).toBe('2h 10m');
   });
 
 });

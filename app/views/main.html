@@ -2,26 +2,7 @@
     <h2 class="uppercase">opening this week</h2>
     <ul>
         <li ng-repeat="movie in openingMovies" class="card-container">
-            <figure class="card large">
-                <a href=""><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" />
-                </a>
-
-                <figcaption>
-                    <div ng-if="movie.release_dates.theater">
-                        <p class="uppercase"><b><i>opens {{ movie.release_dates.theater | date:'EEEE' }}</i></b></p>
-                        <p>{{ movie.release_dates.theater | date:'MMMM d, yyyy' }}</p>
-                    </div>
-
-                    <h3><a href="">{{ movie.title }}</a> <a href=""><span class="glyphicon glyphicon-heart-empty"></span></a></h3>
-                    <p><i>{{ movie.mpaa_rating }}, {{ movie.runtime | jljHumanTime:'mm':'hhh mmm':false }}</i> </p>
-
-                    <p><b class="capitalize">audience rating:</b>
-                        <jlj-star-rating rating="{{ movie.ratings.audience_score }}"></jlj-star-rating> | <b class="capitalize">critic rating:</b>
-                        <jlj-star-rating rating="{{ movie.ratings.critics_score }}">
-                    </p>
-                    <p>{{ movie.synopsis | limitTo: 320}}...</p>
-                </figcaption>
-            </figure>
+            <jlj-movie-base movie="movie"></jlj-movie-base>
         </li>
     </ul>
     <!--    <p><a href="">see all</a></p>-->
@@ -33,27 +14,7 @@
     <h2 class="uppercase">now playing</h2>
     <ul>
         <li ng-repeat="movie in topMovies" class="card-container">
-            <figure class="card large">
-                <a href=""><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" />
-                </a>
-
-                <figcaption>
-                    <div ng-if="movie.release_dates.theater">
-                        <p class="uppercase"><b><i>released</i></b></p>
-                        <p>{{ movie.release_dates.theater | date:'MMMM d, yyyy' }}</p>
-                    </div>
-                    
-                    <h3><a href="">{{ movie.title }}</a> <a href=""><span class="glyphicon glyphicon-heart-empty"></span></a></h3>
-                    <p><i>{{ movie.mpaa_rating }}, {{ movie.runtime | jljHumanTime:'mm':'hhh mmm':false }}</i>
-                    </p>
-
-                    <p><b class="capitalize">audience rating:</b>
-                        <jlj-star-rating rating="{{ movie.ratings.audience_score }}"></jlj-star-rating> | <b class="capitalize">critic rating:</b>
-                        <jlj-star-rating rating="{{ movie.ratings.critics_score }}">
-                    </p>
-                    <p>{{ movie.synopsis | limitTo: 320}}...</p>
-                </figcaption>
-            </figure>
+            <jlj-movie-base movie="movie" released="true"></jlj-movie-base>
         </li>
     </ul>
     <!--    <p><a href="">see all</a></p>-->

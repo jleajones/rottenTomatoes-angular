@@ -1,25 +1,21 @@
 .card-container {
-    transition-property: box-shadow;
-    transition-duration: .25s;
-    transition-timing-function: ease-in;
-    transition-delay: 0s;
-    
-    &:hover {
-        transition-timing-function: ease-out;
-        box-shadow: 5px 5px 12px 3px rgba(0, 0,0, 0.25);
-    }
+    position: relative;
+    list-style: none;
     .card {
         overflow: hidden;
         padding-bottom: 20px;
         border-bottom: solid 1px #ececec;
-        
+        height: 245px;
+        transition: 0.2s ease-out;
+        transition-property: box-shadow, height;
+        background: #fff;
         &.large {
             padding: 20px;
             img {
                 float: left;
             }
             figcaption {
-                max-width: 600px;
+                max-width: 700px;
                 margin-left: 150px;
                 h3 {
                     margin-top: 0;
@@ -33,6 +29,24 @@
                 .success {
                     color: #5cb85c;
                 }
+            }
+            .content {
+                display: none;
+            }
+            
+            &.expand {
+                height: 500px;
+                box-shadow: 5px 5px 12px 3px rgba(0, 0, 0, 0.25);
+                position: relative;
+                width: 100%;
+                z-index: 99;
+            }
+            
+            &.expand,
+            &.expand-remove {
+                > .content {
+                    display: block;
+                }   
             }
         }
     }

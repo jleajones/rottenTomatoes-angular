@@ -7,7 +7,7 @@
  * # jljRottenTomatoes
  * Provider in the rottenTomatoesAngularProjApp.
  */
-
+(function(angular){
 function RottenTomatoesProvider() {
     // Private variables
     var provider = this;
@@ -200,3 +200,5 @@ function RottenTomatoesProvider() {
 
 angular.module('rottenTomatoesAngularProjApp')
     .provider('jljRottenTomatoes', RottenTomatoesProvider);
+    
+}(angular));

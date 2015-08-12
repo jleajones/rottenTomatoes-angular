@@ -31,10 +31,10 @@
                 '<div class="col-xs-12"><p>{{ movie.synopsis | limitTo: 150}}...</p>' +
                 '<p><a href="">Read More</a></p></div>' +
                 '</figcaption>' +
-                '<div class="content row"><div class="col-xs-12 col-md-6">' +
-                '<h5>Clips</h5>' +
+                '<div class="content row"><div class="col-xs-12 col-md-3">' +
+                '<h5 class="capitalize">cast</h5><ul class="list-unstyled"><li ng-repeat="member in movie.abridged_cast"><a href="">{{ member.name }}</a> <small>playing <b ng-repeat="part in member.characters">{{ part }}</span></b></small></li>' +
                 '</div><div class="col-xs-12 col-md-6">' +
-                '<h5>Actors</h5></div></div>' +
+                '<h5 class="capitalize">clips</h5></div></div>' +
                 '</figure>',
             restrict: 'E',
             scope: {

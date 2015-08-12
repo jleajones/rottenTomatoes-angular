@@ -11,6 +11,7 @@ angular.module('rottenTomatoesAngularProjApp')
     .controller('MainCtrl', function ($scope, $log, jljRottenTomatoes) {
         jljRottenTomatoes.lists.openingMovies({limit: 10, page: 1}).then(function (response) {
             $scope.openingMovies = response.data.movies;
+            console.log($scope.openingMovies);
         });
     
         jljRottenTomatoes.lists.boxOffice({limit: 10}).then(function (response) {

@@ -32,6 +32,10 @@
             }
             .content {
                 display: none;
+                
+                .btn {
+                    margin-top: 40px;
+                }
             }
             
             &.expand {

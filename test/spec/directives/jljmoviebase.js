@@ -12,8 +12,8 @@ describe('Directive: jljMovieBase', function () {
         scope = $rootScope.$new();
     }));
 
-    it('should make hidden element visible', inject(function ($compile) {
+    it('should make hidden element visible', inject(function () {
         element = angular.element('<jlj-movie-base></jlj-movie-base>');
-        element = $compile(element)(scope);
+        //element = $compile(element)(scope);
     }));
 });

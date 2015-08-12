@@ -19,9 +19,8 @@ angular.module('rottenTomatoesAngularProjApp')
                 var starElemFill = '<span class="glyphicon glyphicon-star"></span>';
                 var starElemEmpty = '<span class="glyphicon glyphicon-star-empty"></span>';
 
-                while (score < attrs.rating) {
+                while ((score += 20) < attrs.rating) {
                     htmlStr.push(starElemFill);
-                    score = score + 20;
                 }
                 
                 if (htmlStr.length < 3) {

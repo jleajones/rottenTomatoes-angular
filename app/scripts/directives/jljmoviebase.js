@@ -11,7 +11,7 @@
 
         return {
             template: '<figure class="card large" ng-mouseenter="expand($event)" ng-mouseleave="collapse($event)">' +
-                '<a href=""><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" />' +
+                '<a ng-href="#/movies/{{ movie.id | jljEncodeUri }}"><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" />' +
                 '</a>' +
 
                 '<figcaption>' +

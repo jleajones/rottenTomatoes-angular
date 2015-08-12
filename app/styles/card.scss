@@ -9,6 +9,18 @@
         transition: 0.2s ease-out;
         transition-property: box-shadow, height;
         background: #fff;
+        > .row {
+            margin: 0;
+        }
+        header {
+            margin-bottom: 10px;
+            p {
+                margin-bottom: 0;
+            }
+            h3 {
+                margin:5px 0;
+            }
+        }
         &.large {
             padding: 20px;
             img {
@@ -32,12 +44,10 @@
             }
             .content {
                 display: none;
-                
                 .btn {
                     margin-top: 40px;
                 }
             }
-            
             &.expand {
                 height: 500px;
                 box-shadow: 5px 5px 12px 3px rgba(0, 0, 0, 0.25);
@@ -45,12 +55,11 @@
                 width: 100%;
                 z-index: 99;
             }
-            
             &.expand,
             &.expand-remove {
                 > .content {
                     display: block;
-                }   
+                }
             }
         }
     }

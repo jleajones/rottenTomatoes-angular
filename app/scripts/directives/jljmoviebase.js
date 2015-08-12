@@ -6,12 +6,12 @@
  * @description
  * # jljMovieBase
  */
-(function (angular) {
+(function (angular, holder) {
     function MovieBase($animate) {
 
         return {
             template: '<figure class="card large" ng-mouseenter="expand($event)" ng-mouseleave="collapse($event)"><div class="row">' +
-                '<a ng-href="#/movies/{{ movie.title | jljEncodeUri }}"><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" />' +
+                '<a ng-href="#/movies/{{ movie.title | jljEncodeUri }}"><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" class="poster"/>' +
                 '</a>' +
 
                 '<figcaption>' +
@@ -39,7 +39,27 @@
                 '<div class="content"><div class="row"><div class="col-xs-12 col-md-4">' +
                 '<h5 class="capitalize"><span class="glyphicon glyphicon-user"></span> cast</h5><ul class="list-unstyled"><li ng-repeat="member in movie.abridged_cast"><a href="">{{ member.name }}</a> <small ng-if="member.characters.length > 0">playing <b ng-repeat="part in member.characters">{{ part }}</span></b></small></li>' +
                 '</div><div class="col-xs-12 col-md-8">' +
-                '<h5 class="capitalize"><span class="glyphicon glyphicon-film"></span> clips</h5></div></div>' +
+                '<h5 class="capitalize"><span class="glyphicon glyphicon-film"></span> clips</h5>' +
+            
+                '<div class="row">' +
+                
+                '<div class="col-xs-6 col-md-3">' +
+                '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
+                '</div>' +
+                
+                '<div class="col-xs-6 col-md-3">' +
+                '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
+                '</div>' +
+                
+                '<div class="col-xs-6 col-md-3">' +
+                '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
+                '</div>' +
+                
+                '<div class="col-xs-6 col-md-3">' +
+                '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
+                '</div>' +
+            
+                '</div></div></div>' +
                 '<div class="row"><div class="col-xs-6"><button type="button" class="btn btn-success btn-lg btn-block capitalize"><span class="glyphicon glyphicon-thumbs-up"></span> good</button></div>' +
                 '<div class="col-xs-6"><button type="button" class="btn btn-danger btn-lg btn-block capitalize"><span class="glyphicon glyphicon-thumbs-down"></span> bad</button></div></div>' +
                 '</div></div>' +
@@ -50,10 +70,16 @@
             },
             replace: true,
             link: function postLink(scope, elem, attrs) {
+                holder.run({
+                            'images': '.clip-poster'
+                        });
                 scope.released = attrs.released || false;
 
                 scope.expand = function () {
-                    $animate.addClass(elem, 'expand');
+                    var doneFn = function() {
+                        
+                    };
+                    $animate.addClass(elem, 'expand', doneFn());
                 };
 
                 scope.collapse = function () {
@@ -65,4 +91,4 @@
 
     angular.module('rottenTomatoesAngularProjApp')
         .directive('jljMovieBase', MovieBase);
-}(angular));
+}(angular, window.Holder));

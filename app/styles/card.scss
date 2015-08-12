@@ -5,7 +5,7 @@
         overflow: hidden;
         padding-bottom: 20px;
         border-bottom: solid 1px #ececec;
-        height: 245px;
+        height: 230px;
         transition: 0.2s ease-out;
         transition-property: box-shadow, height;
         background: #fff;
@@ -23,7 +23,7 @@
         }
         &.large {
             padding: 20px;
-            img {
+            img.poster {
                 float: left;
             }
             figcaption {
@@ -43,7 +43,6 @@
                 }
             }
             .content {
-                display: none;
                 .btn {
                     margin-top: 40px;
                 }

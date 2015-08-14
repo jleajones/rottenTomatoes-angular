@@ -10,7 +10,7 @@
     function MovieBase($animate) {
 
         return {
-            template: '<figure class="card large" ng-mouseenter="expand($event)" ng-mouseleave="collapse($event)"><div class="row">' +
+            template: '<figure class="card large" ng-click="clickHandler($event)"><div class="row">' +
                 '<a ng-href="#/movies/{{ movie.title | jljEncodeUri }}"><img ng-src="{{ movie.posters.original | jljRottenTomatoImage }}" width="130" class="poster"/>' +
                 '</a>' +
 
@@ -25,7 +25,7 @@
                 '&nbsp;&nbsp;{{ movie.release_dates.theater | date:\'MMMM d, yyyy\' }}</span>' +
                 '</small></h3></div>' +
 
-                '<h3><a ng-href="#/movies/{{ movie.title | jljEncodeUri }}">{{ movie.title }}</a> <a href=""><span class="glyphicon glyphicon-heart-empty"></span></a></h3>' +
+                '<h3><a ng-href="#/title/{{ movie.title | jljEncodeUri }}">{{ movie.title }}</a> <a href=""><span class="glyphicon glyphicon-heart-empty"></span></a></h3>' +
                 '<p><i>{{ movie.mpaa_rating }}, {{ movie.runtime | jljHumanTime:\'mm\':\'hhh mmm\':false }}</i></p></header>' +
 
                 '<div class="col-md-6 col-xs-12"><p><b class="capitalize">audience rating: </b>' +
@@ -34,31 +34,31 @@
                 '<jlj-star-rating rating="{{ movie.ratings.critics_score }}">' +
                 '</p></div>' +
                 '<div class="col-xs-12"><p>{{ movie.synopsis | limitTo: 150}}...</p>' +
-                '<p><a ng-href="#/movies/{{ movie.title | jljEncodeUri }}">Read More</a></p></div>' +
+                '<p><a ng-href="#/title/{{ movie.title | jljEncodeUri }}">Read More</a></p></div>' +
                 '</figcaption></div>' +
                 '<div class="content"><div class="row"><div class="col-xs-12 col-md-4">' +
                 '<h5 class="capitalize"><span class="glyphicon glyphicon-user"></span> cast</h5><ul class="list-unstyled"><li ng-repeat="member in movie.abridged_cast"><a href="">{{ member.name }}</a> <small ng-if="member.characters.length > 0">playing <b ng-repeat="part in member.characters">{{ part }}</span></b></small></li>' +
                 '</div><div class="col-xs-12 col-md-8">' +
                 '<h5 class="capitalize"><span class="glyphicon glyphicon-film"></span> clips</h5>' +
-            
+
                 '<div class="row">' +
-                
+
                 '<div class="col-xs-6 col-md-3">' +
                 '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
                 '</div>' +
-                
+
                 '<div class="col-xs-6 col-md-3">' +
                 '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
                 '</div>' +
-                
+
                 '<div class="col-xs-6 col-md-3">' +
                 '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
                 '</div>' +
-                
+
                 '<div class="col-xs-6 col-md-3">' +
                 '<a href="" class="thumbnail"><img class="clip-poster" data-src="holder.js/100px100?theme=industrial"/></a>' +
                 '</div>' +
-            
+
                 '</div></div></div>' +
                 '<div class="row"><div class="col-xs-6"><button type="button" class="btn btn-success btn-lg btn-block capitalize"><span class="glyphicon glyphicon-thumbs-up"></span> good</button></div>' +
                 '<div class="col-xs-6"><button type="button" class="btn btn-danger btn-lg btn-block capitalize"><span class="glyphicon glyphicon-thumbs-down"></span> bad</button></div></div>' +
@@ -71,19 +71,31 @@
             replace: true,
             link: function postLink(scope, elem, attrs) {
                 holder.run({
-                            'images': '.clip-poster'
-                        });
+                    'images': '.clip-poster'
+                });
                 scope.released = attrs.released || false;
 
-                scope.expand = function () {
-                    var doneFn = function() {
-                        
-                    };
-                    $animate.addClass(elem, 'expand', doneFn());
+                var expand = function () {
+                    $animate.addClass(elem, 'expand');
                 };
 
-                scope.collapse = function () {
+                var collapse = function () {
                     $animate.removeClass(elem, 'expand');
+                };
+
+                scope.clickHandler = function () {
+                    angular.forEach(elem.parent().siblings(), function (value) {
+                        var node = angular.element(value).children();
+                        if (node.hasClass('expand')) {
+                            $animate.removeClass(node, 'expand');
+                        }
+                    });
+
+                    if (elem.hasClass('expand')) {
+                        collapse();
+                    } else {
+                        expand();
+                    }
                 };
             }
         };

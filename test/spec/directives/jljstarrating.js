@@ -23,4 +23,10 @@ describe('Directive: jljStarRating', function () {
     element = $compile(element)(scope);
     expect(element.html()).toBe('<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span>');
   }));
+
+  it('should dispay 0 full stars and 5 empty stars', inject(function ($compile) {
+    element = angular.element('<jlj-star-rating rating="18"></jlj-star-rating>');
+    element = $compile(element)(scope);
+    expect(element.html()).toBe('<span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span>');
+  }));
 });

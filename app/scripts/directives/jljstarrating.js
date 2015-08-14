@@ -14,12 +14,11 @@ angular.module('rottenTomatoesAngularProjApp')
             scope: {},
             link: function postLink(scope, element, attrs) {
                 var score = 0;
-
                 var htmlStr = [];
                 var starElemFill = '<span class="glyphicon glyphicon-star"></span>';
                 var starElemEmpty = '<span class="glyphicon glyphicon-star-empty"></span>';
-
-                while ((score += 20) < attrs.rating) {
+                
+                while ((score += 20) <= attrs.rating) {
                     htmlStr.push(starElemFill);
                 }
                 
